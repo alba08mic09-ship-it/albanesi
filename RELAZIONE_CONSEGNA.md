@@ -75,3 +75,4 @@ curl http://localhost:8080/
 curl -X POST http://localhost:8080/crash
 docker ps -a   # Il container risulta "Exited (1)" come previsto per Kubernetes
 ```
+
