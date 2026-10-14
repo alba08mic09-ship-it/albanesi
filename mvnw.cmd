@@ -27,6 +27,11 @@
 @REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
 @REM ----------------------------------------------------------------------------
 
+@IF EXIST "C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot" (
+  IF "%JAVA_HOME%"=="" (SET "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot")
+  IF "%JAVA_HOME%"=="C:\Program Files\Eclipse Adoptium\jdk-11.0.30.7-hotspot\" (SET "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot")
+  IF "%JAVA_HOME%"=="C:\Program Files\Eclipse Adoptium\jdk-11.0.30.7-hotspot" (SET "JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot")
+)
 @IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
 @SET __MVNW_CMD__=
 @SET __MVNW_ERROR__=
@@ -44,6 +49,13 @@
 @echo Cannot start maven from wrapper >&2 && exit /b 1
 @GOTO :EOF
 : end batch / begin powershell #>
+
+if (Test-Path "C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot") {
+  if (-not $env:JAVA_HOME -or $env:JAVA_HOME -like "*jdk-11*") {
+    $env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot"
+    $env:Path = "$env:JAVA_HOME\bin;$env:Path"
+  }
+}
 
 $ErrorActionPreference = "Stop"
 if ($env:MVNW_VERBOSE -eq "true") {
